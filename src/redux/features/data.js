@@ -64,14 +64,12 @@ export const counterSlice = createSlice({
   },
   reducers: {
     filter: (state, action) => {
-      // console.log(action);
-      // console.log(state.value);
+
       const { payload } = action;
       debugger;
       switch (payload.type) {
         case "filter":
           const filters = state.value.filterData.length===0 ? state.value.data.map((currData) => {
-            //   console.log(currData);
             if (action.payload.value === currData.filter) {
               return { ...currData, visible: true };
             } else {

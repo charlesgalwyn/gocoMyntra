@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Style from "./ProductDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,6 +10,10 @@ import {
 const ProductDetails = (props) => {
   const wishlistData = useSelector((state) => state.appData.value.wishlist);
   const dispatch = useDispatch();
+  const[selSize, setSelSize]= useState(null);
+  const selectSize=(value)=>{
+   console.log(value)
+  }
   return (
     <>
       <div className="right-details-content">
@@ -47,7 +51,7 @@ const ProductDetails = (props) => {
         {
           // console.log(props.size)
           props.size.map((value) => {
-            return <p className="size-varient">{value}</p>;
+            return <p className="size-varient" onClick={selectSize(value)}>{value}</p>;
           })
         }
         <br />
@@ -56,6 +60,8 @@ const ProductDetails = (props) => {
           className="details-btn btn-primary"
           onClick={() => {
             dispatch(addToCart(props.value));
+            alert("Product Added to Bag")
+            console.log(props.value)
           }}
         >
           Add to Bag
@@ -65,6 +71,7 @@ const ProductDetails = (props) => {
           className="details-btn btn-sec"
           onClick={() => {
             dispatch(addToWishlist(props.value));
+            alert("Product Added to Wishlist")
           }}
         >
           Wishlist

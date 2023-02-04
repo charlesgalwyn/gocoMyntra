@@ -49,8 +49,9 @@ p {
 	width: 92%;
 	padding: 8px;
 	border: solid 1px #0054ff;
-	color: #0054ff;
+	color: black;
 	background-color: #fff;
+	border-radius: 7px;
 }
 .wishlist:hover{
 	background-color: #0054ff;

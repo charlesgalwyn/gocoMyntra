@@ -6,9 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { filter } from "../../redux/features/data";
 
 const Filter = () => {
-//   const filterData = useSelector((state) => state.appData.filters);
-//   const categoryData = useSelector((state) => state.appData.categories);
-//   const brandData = useSelector((state) => state.appData.brands);
 const [brands, setBrands] = useState([]);
 const [categories, setCategories] = useState([]);
 
@@ -126,11 +123,11 @@ const selectCategory = (category) => {
               <label>Zara</label>
               <br />
               <input type="checkbox" onClick={() => {
-				   selectBrand('parx')
+				   selectBrand('nautica')
 				//   dispatch(filter({type: 'brand', value: brands}))
 				  }
 				  } />
-              <label>Parx</label>
+              <label>Nautica</label>
               <br />
 			  <input type="checkbox" onClick={() => {
 				   selectBrand('roadster')
@@ -140,14 +137,14 @@ const selectCategory = (category) => {
               <label>Roadster</label>
               <br />
               <input type="checkbox" onClick={() => {
-				   selectBrand('harvard')
+				   selectBrand('arrow')
 				//   dispatch(filter({type: 'brand', value: brands}))
 				  }
 				  } />
-              <label>Harvard</label>
+              <label>Arrow</label>
               <br />
 			  <input type="checkbox" onClick={() => {
-				   selectBrand('wrong')
+				   selectBrand('wrogn')
 				//   dispatch(filter({type: 'brand', value: brands}))
 				  }
 				  } />

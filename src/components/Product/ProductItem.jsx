@@ -35,7 +35,10 @@ const ProductItem = () => {
                                                 <p className="card-title">{product}</p>
                                                 <p className="card-price">{price}</p>
                                                 <div className="wishlist-wrapper">
-                                                    <button className="wishlist" onClick={() => { dispatch(addToWishlist(value)) }}> Add to Wishlist </button>
+                                                    <button className="wishlist" onClick={() => { 
+                                                        dispatch(addToWishlist(value));
+                                                        alert("Product Added to Wishlist")
+                                                     }}> Add to Wishlist </button>
                                                 </div>
                                             </div>
                                         </div>
