@@ -3,7 +3,7 @@ export const productActionCreator = () => {
   return (dispatch, getState) => {
     const getElectronicData = () => {
       console.log("API is Called");
-      fetch("http://localhost:3004/shirts")
+      fetch("https://charlesgalwyn.github.io/gocoapi/shirts.json")
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
@@ -11,7 +11,7 @@ export const productActionCreator = () => {
 
           dispatch({
             type: "SHIRTS",
-            payload: data,
+            payload: data.shirts,
           });
         });
     };
@@ -121,13 +121,13 @@ export const filterActionCreator = (data) => {
           });
         }
         else {
-          fetch("http://localhost:3004/shirts")
+          fetch("https://charlesgalwyn.github.io/gocoapi/shirts.json")
         .then((res) => res.json())
         .then((data) => {
 
           dispatch({
             type: "SHIRTS",
-            payload: data,
+            payload: data.shirts,
           });
         });
         }
@@ -155,13 +155,13 @@ export const filterCatActionCreator = (data) => {
           });
         }
         else {
-          fetch("http://localhost:3004/shirts")
+          fetch("https://charlesgalwyn.github.io/gocoapi/shirts.json")
         .then((res) => res.json())
         .then((data) => {
 
           dispatch({
             type: "SHIRTS",
-            payload: data,
+            payload: data.shirts,
           });
         });
         }
@@ -189,13 +189,13 @@ export const filterGenderActionCreator = (data) => {
           });
         }
         else {
-          fetch("http://localhost:3004/shirts")
+          fetch("https://charlesgalwyn.github.io/gocoapi/shirts.json")
         .then((res) => res.json())
         .then((data) => {
 
           dispatch({
             type: "SHIRTS",
-            payload: data,
+            payload: data.shirts,
           });
         });
         }
