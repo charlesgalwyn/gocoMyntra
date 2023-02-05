@@ -1,3 +1,4 @@
+import { useState } from "react";
 export const productActionCreator = () => {
   return (dispatch, getState) => {
     const getElectronicData = () => {
@@ -214,25 +215,26 @@ export const sortActionCreator = (data) => {
       const shirtArray= getState().productReducer.shirts;
 
       if (data==="lth"){
-      shirtArray.sort(function(a,b){
+      var newArr=shirtArray.slice().sort(function(a,b){
         return Number(b.price.substring(3))- Number(a.price.substring(3))
       })
+
+      dispatch({
+            type: "SORT",
+            payload: newArr,
+          });
       }
       else {
-      shirtArray.sort(function(a,b){
+      var newArr=shirtArray.slice().sort(function(a,b){
         return Number(a.price.substring(3))- Number(b.price.substring(3))
       })
-      }
-          
-
-          dispatch({
+      dispatch({
             type: "SORT",
-            payload: shirtArray,
+            payload: newArr,
           });
-        
-    };
-
-    
+      }
+                  
+    };    
       getElectronicData();
     
   };
