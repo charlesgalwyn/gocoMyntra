@@ -15,8 +15,14 @@ const Navbar = () => {
 	const [showWishlist, setShowWishlist] = useState(false)
 	const [showCart, setShowCart] = useState(false)
 
-	const wishlistData = useSelector((state) => state.appData.value.wishlist )
-	const cartData = useSelector((state) => state.appData.value.cart )
+	const wishlistData = useSelector((storeData) =>{
+		return storeData.productReducer.wishlist
+	})
+	const cartData = useSelector((storeData) => {
+		return storeData.productReducer.cart
+	})
+
+	
 	return (
 		<>
 			<div className="nav">

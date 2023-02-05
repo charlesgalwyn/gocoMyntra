@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import "../../helper.css";
 import style from "./Sort.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,18 +8,23 @@ import {
 import Breadcrums from "../DetailsPage/Breadcrums";
 import Pdata from "../Product/Pdata";
 import { useDispatch, useSelector } from "react-redux";
-import { filter } from "../../redux/features/data";
+import { sortActionCreator } from "../../ActionCreator/productActionCreator";
+import { bindActionCreators } from "redux";
 
 const Sort = () => {
   const dispatch = useDispatch();
-  const LtoH= Pdata.slice().sort(function(a,b){
-    return Number(a.price.substring(3))- Number(b.price.substring(3))
-  })
-  console.log(LtoH)
-  //dispatch(filter({type: 'brand', value: LtoH}))
-  const sortlth=()=>{
-    
-  }
+  const getInitialState = () => {
+    const value = "nothing";
+    return value;
+  };
+  const [value, setValue] = useState(getInitialState);
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    let actionCreator = bindActionCreators(sortActionCreator, dispatch);
+    actionCreator(value)
+
+  };
+  
   return (
     <div className="container">
       <Breadcrums title="Home / Shirts" />
@@ -29,10 +34,10 @@ const Sort = () => {
         </div>
         <div className="container">
 
-          <select name="Sort" id="sorting" onChange={sortlth}>
+          <select name="Sort" id="sorting" onChange={handleChange}>
               <option value="sortby">Sort by : Recommendation</option>
-              <option value="sortprice">Price: Low to High</option>
-              <option value="sortprice">Price: High to Low</option>
+              <option value="lth">Price: Low to High</option>
+              <option value="htl">Price: High to Low</option>
           </select>
         </div>
       </div>

@@ -3,11 +3,22 @@ import { faBox } from '@fortawesome/free-solid-svg-icons';
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { addToWishlist } from "../../redux/features/data";
+import { bindActionCreators } from "redux";
+import { productActionCreator } from '../../ActionCreator/productActionCreator';
+import { useState, useEffect } from "react";
+import { wishActionCreator } from '../../ActionCreator/productActionCreator';
 
 const ProductItem = () => {
-    const productData = useSelector((state) => state.appData.value.data)
+    
+    const productData = useSelector((storeData) => {
+    return storeData.productReducer.shirts;
+  });
     const dispatch = useDispatch();
+    useEffect(() => {
+    let actionCreator = bindActionCreators(productActionCreator, dispatch);
+    actionCreator();
+  }, []);
+
     return (
         <>
             <div className="container left-content-border">
@@ -35,10 +46,13 @@ const ProductItem = () => {
                                                 <p className="card-title">{product}</p>
                                                 <p className="card-price">{price}</p>
                                                 <div className="wishlist-wrapper">
-                                                    <button className="wishlist" onClick={() => { 
-                                                        dispatch(addToWishlist(value));
+                                                    <button className="wishlist" 
+                                                    onClick={() => { 
+                                                        let actionCreator = bindActionCreators(wishActionCreator, dispatch);
+                                                        actionCreator(value)
                                                         alert("Product Added to Wishlist")
-                                                     }}> Add to Wishlist </button>
+                                                     }}
+                                                     > Add to Wishlist </button>
                                                 </div>
                                             </div>
                                         </div>

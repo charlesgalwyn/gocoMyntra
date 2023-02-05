@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../redux/features/data";
 import "./Modal.css";
 import "./Cards.css";
+import { removeBagActionCreator } from "../../ActionCreator/productActionCreator";
+import { bindActionCreators } from "redux";
 
 const Cart = () => {
-	const cartData = useSelector(state => state.appData.value.cart)
+	const cartData = useSelector(storeData => storeData.productReducer.cart)
 	console.log(cartData)
 	const dispatch = useDispatch();
 	
@@ -33,7 +34,9 @@ const Cart = () => {
 												<button
 													className="wishlist"
 													onClick={() => {
-														dispatch(removeFromCart(value));
+														let actionCreator = bindActionCreators(removeBagActionCreator, dispatch);
+                                                        actionCreator(value)
+                                                        alert("Product Removed from Bag")
 													}}
 												>
 													Remove from Bag

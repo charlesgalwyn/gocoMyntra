@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Style from "./ProductDetails.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  addToWishlist,
-  removeFromWishList,
-} from "../../redux/features/data";
+import { bindActionCreators } from "redux";
+import { bagActionCreator } from "../../ActionCreator/productActionCreator";
+import { wishActionCreator } from "../../ActionCreator/productActionCreator";
 
 const ProductDetails = (props) => {
-  const wishlistData = useSelector((state) => state.appData.value.wishlist);
+  const wishlistData = useSelector((storeData) => storeData.productReducer.wishlist);
   const dispatch = useDispatch();
   const[selSize, setSelSize]= useState(null);
   const selectSize=(value)=>{
@@ -59,7 +57,9 @@ const ProductDetails = (props) => {
         <button
           className="details-btn btn-primary"
           onClick={() => {
-            dispatch(addToCart(props.value));
+            //dispatch(addToCart(props.value));
+            let actionCreator = bindActionCreators(bagActionCreator, dispatch);
+            actionCreator(props.value)
             alert("Product Added to Bag")
             console.log(props.value)
           }}
@@ -70,7 +70,8 @@ const ProductDetails = (props) => {
         <button
           className="details-btn btn-sec"
           onClick={() => {
-            dispatch(addToWishlist(props.value));
+            let actionCreator = bindActionCreators(wishActionCreator, dispatch);
+            actionCreator(props.value)
             alert("Product Added to Wishlist")
           }}
         >

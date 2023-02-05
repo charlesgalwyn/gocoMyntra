@@ -3,72 +3,63 @@ import "../../helper.css";
 import style from "./Filter.css";
 import Pdata from "../Product/Pdata";
 import { useDispatch, useSelector } from "react-redux";
-import { filter } from "../../redux/features/data";
+import { bindActionCreators } from "redux";
+import { filterActionCreator } from "../../ActionCreator/productActionCreator";
+import { filterCatActionCreator } from "../../ActionCreator/productActionCreator";
+import { filterGenderActionCreator } from "../../ActionCreator/productActionCreator";
 
 const Filter = () => {
 const [brands, setBrands] = useState([]);
 const [categories, setCategories] = useState([]);
+const dispatch = useDispatch();
 
-const selectBrand = (brand) => {
-	if(brands.includes(brand)){
-		let newBrand = brands.filter(brandItem => brand!== brandItem);
-		setBrands(newBrand);
-		dispatch(filter({type: 'brand', value: newBrand}))
-	}else{
-		// setBrands(brands.push(brand))
-		setBrands([...brands, brand])
-		dispatch(filter({type: 'brand', value: [...brands, brand]}))
-	}
-}
-const selectCategory = (category) => {
-	if(categories.includes(category)){
-		let newBrand = categories.filter(brandItem => category!== brandItem);
-		setCategories(newBrand);
-		dispatch(filter({type: 'category', value: newBrand}))
-	}else{
-		// setBrands(brands.push(brand))
-		setCategories([...categories, category])
-		dispatch(filter({type: 'category', value: [...categories, category]}))
-	}
-}
 
-  const dispatch = useDispatch();
   return (
     <div className="filter-left-content">
       <div className="position-fixed left-content-border-new">
         <div className="filter-wrapper">
           <div className="container">
             <div className="label-space">
-              <input
-                type="radio"
-                name="gender"
-                onClick={() => dispatch(filter({type: 'filter', value:'men'}))}
-              />
-              <label>Men</label>
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterGenderActionCreator, dispatch);
+           actionCreator("men")
+				   
+				  }
+				  }  />
+              <label>MEN</label>
               <br />
-              <input
-                type="radio"
-                name="gender"
-				onClick={() => dispatch(filter({type: 'filter', value:'women'}))}
-
-              />
-              <label>Women</label>
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterGenderActionCreator, dispatch);
+           actionCreator("women")
+				   
+				  }
+				  } 
+          />
+              <label>WOMEN</label>
               <br />
-              <input
-                type="radio"
-                name="gender"
-				onClick={() => dispatch(filter({type: 'filter', value:'boys'}))}
-
-              />
-              <label>Boys</label>
+			  <input type="checkbox" 
+        onClick={() => {
+				   let actionCreator = bindActionCreators(filterGenderActionCreator, dispatch);
+           actionCreator("boys")
+				   
+				  }
+				  } 
+          />
+              <label>BOYS</label>
               <br />
-              <input
-                type="radio"
-                name="gender"
-				onClick={() => dispatch(filter({type: 'filter', value:'girls'}))}
-
-              />
-              <label>Girls</label>
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterGenderActionCreator, dispatch);
+           actionCreator("girls")
+				   
+				  }
+        }
+          />
+              <label>GIRLS</label>
+              <br />
+			  
             </div>
           </div>
         </div>
@@ -80,8 +71,9 @@ const selectCategory = (category) => {
               <input
                 type="checkbox"
                 onClick={() => {
-				   selectCategory('shirt')
-				//   dispatch(filter({type: 'brand', value: brands}))
+				   let actionCreator = bindActionCreators(filterCatActionCreator, dispatch);
+           actionCreator("shirt")
+				   
 				  }
 				  }
               />
@@ -90,8 +82,9 @@ const selectCategory = (category) => {
               <input
                 type="checkbox"
                 onClick={() => {
-				   selectCategory('sleepShirt')
-				//   dispatch(filter({type: 'brand', value: brands}))
+				   let actionCreator = bindActionCreators(filterCatActionCreator, dispatch);
+           actionCreator("sleepShirt")
+				   
 				  }
 				  }
               />
@@ -100,8 +93,9 @@ const selectCategory = (category) => {
               <input
                 type="checkbox"
 				onClick={() => {
-				   selectCategory('dogShirt')
-				//   dispatch(filter({type: 'brand', value: brands}))
+				   let actionCreator = bindActionCreators(filterCatActionCreator, dispatch);
+           actionCreator("dogShirt")
+				   
 				  }
 				  }
               />
@@ -114,40 +108,53 @@ const selectCategory = (category) => {
           <div className="container">
             <h3>Brands</h3>
             <div className="label-space">
-              <input type="checkbox" onClick={() => {
-				//   debugger
-				  selectBrand('zara')
-				//   dispatch(filter({type: 'brand', value: brands}))
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterActionCreator, dispatch);
+           actionCreator("zara")
+				   
 				  }
-				  } />
+				  }  />
               <label>Zara</label>
               <br />
-              <input type="checkbox" onClick={() => {
-				   selectBrand('nautica')
-				//   dispatch(filter({type: 'brand', value: brands}))
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterActionCreator, dispatch);
+           actionCreator("nautica")
+				   
 				  }
-				  } />
+				  } 
+          />
               <label>Nautica</label>
               <br />
-			  <input type="checkbox" onClick={() => {
-				   selectBrand('roadster')
-				//   dispatch(filter({type: 'brand', value: brands}))
+			  <input type="checkbox" 
+        onClick={() => {
+				   let actionCreator = bindActionCreators(filterActionCreator, dispatch);
+           actionCreator("roadster")
+				   
 				  }
-				  } />
+				  } 
+          />
               <label>Roadster</label>
               <br />
-              <input type="checkbox" onClick={() => {
-				   selectBrand('arrow')
-				//   dispatch(filter({type: 'brand', value: brands}))
+              <input type="checkbox" 
+              onClick={() => {
+				   let actionCreator = bindActionCreators(filterActionCreator, dispatch);
+           actionCreator("arrow")
+				   
 				  }
-				  } />
+        }
+          />
               <label>Arrow</label>
               <br />
-			  <input type="checkbox" onClick={() => {
-				   selectBrand('wrogn')
-				//   dispatch(filter({type: 'brand', value: brands}))
+			  <input type="checkbox" 
+        onClick={() => {
+				   let actionCreator = bindActionCreators(filterActionCreator, dispatch);
+           actionCreator("wrogn")
+				   
 				  }
-				  } />
+				  } 
+          />
               <label>Wrogn</label>
               <br />
             </div>

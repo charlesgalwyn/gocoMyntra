@@ -1,9 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromWishList } from "../../redux/features/data";
 import style from "./Modal.css";
 import Cards from "./Cards.css";
 import { NavLink } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { bagActionCreator } from "../../ActionCreator/productActionCreator";
+import { removeWishActionCreator } from "../../ActionCreator/productActionCreator";
 
 // function closeme(){
 //   // alert("close me")
@@ -12,7 +14,7 @@ import { NavLink } from "react-router-dom";
 // }
 
 const Modal = () => {
-  const wishlistData = useSelector((state) => state.appData.value.wishlist);
+  const wishlistData = useSelector((storeData) => storeData.productReducer.wishlist);
   const dispatch = useDispatch();
   //  removeFromWishList
   return (
@@ -45,7 +47,9 @@ const Modal = () => {
                         <button
                           className="wishlist"
                           onClick={() => {
-                            dispatch(addToCart(value));
+                            let actionCreator = bindActionCreators(bagActionCreator, dispatch);
+                            actionCreator(value)
+                            alert("Product Added to Bag")
                           }}
                         >
 
@@ -57,7 +61,9 @@ const Modal = () => {
                         <button
                           className="wishlist"
                           onClick={() => {
-                            dispatch(removeFromWishList(value));
+                            let actionCreator = bindActionCreators(removeWishActionCreator, dispatch);
+                            actionCreator(value)
+                            alert("Product Removed from Wishlist")
                           }}
                         >
                           Remove from Wishlist
