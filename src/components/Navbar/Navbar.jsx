@@ -8,12 +8,17 @@ import { useSelector } from "react-redux";
 import Modal from "../Product/Modal"
 import Cart from "../Product/Cart";
 import { NavLink } from "react-router-dom";
+import { searchActionCreator } from "../../ActionCreator/productActionCreator";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const menu = ["Mens", "Womens", "Kids", "Home & Living", "Offer"];
 
 const Navbar = () => {
 	const [showWishlist, setShowWishlist] = useState(false)
 	const [showCart, setShowCart] = useState(false)
+	const [searchInput,setSearchInput]=useState("")
+	const dispatch = useDispatch();
 
 	const wishlistData = useSelector((storeData) =>{
 		return storeData.productReducer.wishlist
@@ -21,6 +26,13 @@ const Navbar = () => {
 	const cartData = useSelector((storeData) => {
 		return storeData.productReducer.cart
 	})
+
+	const searchOnKeyPress=(e)=>{
+		if(e.key=="Enter"){
+           let actionCreator = bindActionCreators(searchActionCreator, dispatch);
+            actionCreator(searchInput)
+		}
+	}
 
 	
 	return (
@@ -54,7 +66,11 @@ const Navbar = () => {
 				<div className="nav-search">
 					<div className="border">
 						<FontAwesomeIcon icon={faSearch} className="font-color" />
-						<input className="padding	" type="search" placeholder="Search for Products, brands and more..." /> 			</div>
+						<input className="padding	" type="search" placeholder="Search for Products, brands and more..." 
+						onChange={(e)=>{setSearchInput(e.target.value)}}
+						onKeyPress={searchOnKeyPress}
+						/> 			
+						</div>
 				</div>
 				<div className="user-profile">
 					<div className="flexed">

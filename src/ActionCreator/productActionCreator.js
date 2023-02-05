@@ -239,3 +239,30 @@ export const sortActionCreator = (data) => {
     
   };
 };
+
+export const searchActionCreator = (data) => {
+  return (dispatch, getState) => {
+    const getElectronicData = () => {
+      console.log("API is Called");
+      const shirtArray= getState().productReducer.shirts;
+      const lowdata = data.toLowerCase();
+      const searchArray= shirtArray.filter((item)=> {
+        if (item.pname=== lowdata || item.filter===lowdata || item.category=== lowdata){
+          return item
+        }
+      })
+          
+
+          dispatch({
+            type: "FILTER",
+            payload: searchArray,
+          });
+        
+        
+    };
+
+    
+      getElectronicData();
+    
+  };
+};
