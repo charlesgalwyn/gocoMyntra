@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/gocoMyntra/static/css/main.baed57d8.css",
-    "main.js": "/gocoMyntra/static/js/main.5ea89e2e.js",
+    "main.js": "/gocoMyntra/static/js/main.0cee85e6.js",
     "static/media/GoComet.jpg": "/gocoMyntra/static/media/GoComet.4613817007997f22548a.jpg",
     "index.html": "/gocoMyntra/index.html",
     "main.baed57d8.css.map": "/gocoMyntra/static/css/main.baed57d8.css.map",
-    "main.5ea89e2e.js.map": "/gocoMyntra/static/js/main.5ea89e2e.js.map"
+    "main.0cee85e6.js.map": "/gocoMyntra/static/js/main.0cee85e6.js.map"
   },
   "entrypoints": [
     "static/css/main.baed57d8.css",
-    "static/js/main.5ea89e2e.js"
+    "static/js/main.0cee85e6.js"
   ]
 }
