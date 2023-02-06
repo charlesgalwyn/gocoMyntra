@@ -89,7 +89,7 @@ export const removeBagActionCreator = (data) => {
   return (dispatch, getState) => {
     const getElectronicData = () => {
       console.log("API is Called");
-      const cartArray= getState().productReducer.wishlist;
+      const cartArray= getState().productReducer.cart;
       const newcartArray= cartArray.filter((item)=> item.id !== data.id)
           
 
